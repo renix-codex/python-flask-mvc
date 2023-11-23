@@ -1,4 +1,4 @@
-from flask import request, abort
+from flask import abort
 
 class AuthorizationMiddleware:
     def __init__(self, app, authorized_tokens):
