@@ -12,8 +12,8 @@ posts = [
 ]
 
 comments = [
-    Comment(comment_id=1, content='Great post!', author=users[2]),
-    Comment(comment_id=2, content='I have a question...', author=users[3])
+    Comment(comment_id=1, content='Great post!', author=users[0]),
+    Comment(comment_id=2, content='I have a question...', author=users[1])
 ]
 
 def get_user_by_username(username):
