@@ -1,4 +1,5 @@
-from models import User, Post, Comment
+from flask import jsonify
+from models import User, Post
 
 # Dummy data
 users = [
@@ -11,16 +12,31 @@ posts = [
     Post(post_id=2, title='Building a Blog with Flask', content='...', author=users[1])
 ]
 
-comments = [
-    Comment(comment_id=1, content='Great post!', author=users[0]),
-    Comment(comment_id=2, content='I have a question...', author=users[1])
-]
 
 def get_user_by_username(username):
     return next((user for user in users if user.username == username), None)
 
-def get_post_by_id(post_id):
-    return next((post for post in posts if post.post_id == post_id), None)
+def list_all_users():
+    user_list = [user.__dict__ for user in users]
+    return user_list
 
-def get_comments_for_post(post):
-    return [comment for comment in comments if comment.post == post]
+def get_post_by_id(post_id):
+    post = next((post for post in posts if post.post_id == post_id), None)
+    if post:
+        return post_to_dict(post)
+    return None
+
+def post_to_dict(post):
+    return {
+        'post_id': post.post_id,
+        'title': post.title,
+        'content': post.content,
+        'author': user_to_dict(post.author)
+    }
+
+def user_to_dict(user):
+    return {
+        'user_id': user.user_id,
+        'username': user.username,
+        'email': user.email
+    }

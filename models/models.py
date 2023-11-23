@@ -14,8 +14,3 @@ class Post:
         self.author = author
         self.comments = []
 
-class Comment:
-    def __init__(self, comment_id, content, author):
-        self.comment_id = comment_id
-        self.content = content
-        self.author = author
